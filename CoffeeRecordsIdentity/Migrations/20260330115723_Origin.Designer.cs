@@ -3,6 +3,7 @@ using System;
 using CoffeeRecordsIdentity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeeRecordsIdentity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260330115723_Origin")]
+    partial class Origin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.14");
@@ -89,16 +92,16 @@ namespace CoffeeRecordsIdentity.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2c71198f-08a2-4066-b1eb-df5e2174a29f",
+                            ConcurrencyStamp = "bde1831b-88bf-4caf-ac72-60a3ce33f18f",
                             Email = "admin@test.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             Name = "",
                             NormalizedEmail = "ADMIN@TEST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMwSxzt3RmVZExN49nNweL0czaaXoElCTiupFdw/Kf4NRLkSkmTFHGRVewntUjpZYQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHjE4Z9XL5RIqkf3CVs0GAH6SKUxkyBtOsYJyfNElIDI/PmZqMDshhBDj8jtj+OmDw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "42b70f92-1ff3-4166-9a4f-0e2331d10e63",
+                            SecurityStamp = "a8409e9a-3968-4dfd-aa29-aaf3a408469c",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -116,8 +119,7 @@ namespace CoffeeRecordsIdentity.Migrations
                     b.Property<int>("MachineNo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
+                    b.Property<string>("UserIdId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserName")
@@ -126,7 +128,7 @@ namespace CoffeeRecordsIdentity.Migrations
 
                     b.HasKey("CoffeeCupId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserIdId");
 
                     b.ToTable("Cups");
                 });
@@ -286,13 +288,11 @@ namespace CoffeeRecordsIdentity.Migrations
 
             modelBuilder.Entity("CoffeeRecordsIdentity.Models.CoffeeCup", b =>
                 {
-                    b.HasOne("CoffeeRecordsIdentity.Models.ApplicationUser", "User")
+                    b.HasOne("CoffeeRecordsIdentity.Models.ApplicationUser", "UserId")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserIdId");
 
-                    b.Navigation("User");
+                    b.Navigation("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,6 +1,7 @@
 using CoffeeRecordsIdentity.Data;
 using CoffeeRecordsIdentity.InputModels;
 using CoffeeRecordsIdentity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
